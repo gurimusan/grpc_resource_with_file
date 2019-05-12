@@ -1,0 +1,30 @@
+[package]
+name = "grpc_resource_with_file"
+version = "0.1.0"
+authors = ["gurimusan <gurimusan@gmail.com>"]
+build = "build.rs"
+
+[dependencies]
+log = "0.4"
+futures = "0.1"
+grpcio = "0.4"
+protobuf = "2"
+failure = "0.1"
+chrono = "0.4"
+mime_guess = "1"
+clap = "2"
+
+[build-dependencies]
+protoc-grpcio = "0.3.1"
+
+[features]
+default = []
+genproto = []
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"

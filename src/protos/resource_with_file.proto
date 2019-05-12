@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package resource_with_file;
+
+service RegisterService {
+  rpc register (stream RegisterRequest) returns (RegisterResponse) {}
+}
+
+message Chunk {
+    bytes data = 1;
+}
+
+message FileHeader {
+  string name = 1;
+  string mime = 2;
+}
+
+message Resource {
+  string title = 1;
+}
+
+message Attachment {
+  oneof file {
+    Chunk chunk = 1;
+    FileHeader header = 2;
+  }
+}
+
+message RegisterRequest {
+  oneof data {
+    Resource resource = 1;
+    Attachment attachment = 2;
+  }
+}
+
+message RegisterResponse {
+  bool result = 1;
+}
